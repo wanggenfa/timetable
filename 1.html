@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>2022级数据科学与大数据技术（专升本）4班</title>
+    <style>
+        td {
+            text-align: center;
+            font-size: 15px;
+			padding: 1px;
+        }
+        th {
+            font-size: 20px;
+        }
+        p {
+            text-align: center;
+            font-size: 35px;
+            font-weight: bold;
+        }
+        body {
+            background-image: url("https://file.51pptmoban.com/d/file/2022/08/18/6fe3db16faacb7367706e2e9055819da.jpg");			
+            background-attachment: fixed;
+        }
+        #tt {
+            font-size: 25px;
+            font-weight: bold;
+        }
+        .hidden {
+            display: none;
+        }
+        #week-select {
+            margin: 20px auto;
+            text-align: center;
+            font-size: 22px;
+        }
+        #week {
+            font-size: 22px;
+        }
+        .course1 {
+            background-color: rgba(255, 204, 204, 0.8); /* 浅红色 */
+            padding: 20px;
+            border-radius: 5px;
+            margin: 5px 0;
+        }
+        .course2 {
+            background-color: rgba(204, 255, 204, 0.8); /* 浅绿色 */
+            padding: 20px;
+            border-radius: 30px;
+            margin: 5px 0;
+        }
+        .course3 {
+            background-color: rgba(204, 204, 255, 0.8); /* 浅蓝色 */
+            padding: 20px;
+            border-radius: 5px;
+            margin: 5px 0;
+        }
+        .course4 {
+            background-color: rgba(255, 255, 204, 0.8); /* 浅黄色 */
+            padding: 20px;
+            border-radius: 5px;
+            margin: 5px 0;
+        }
+		.course5 {
+		    background-color: rgba(228, 255, 215, 0.8); 
+		    padding: 20px;
+		    border-radius: 5px;
+		    margin: 5px 0;
+		}
+		.course6 {
+		    background-color: rgba(226, 242, 255, 0.8); 
+		    padding: 20px;
+		    border-radius: 5px;
+		    margin: 5px 0;
+		}
+		.t1{
+			margin: 2px;
+			font-size: 18px;
+			font-weight: normal;
+		}
+    </style>
+</head>
+<body>
+<p>2022级数据科学与大数据技术（专升本）4班2024-2025-1课表</p>
+
+<div id="week-select">
+    <label for="week">选择周次: </label>
+    <select id="week" onchange="updateSchedule()">
+        <script>
+            for (let i = 1; i <= 20; i++) {
+                document.write(`<option value="${i}">第${i}周</option>`);
+            }
+        </script>
+    </select>
+</div>
+
+<table width="80%" style="table-layout: ;" border="1" cellpadding="15" cellspacing="2" align="center">
+    <thead>
+        <tr>
+            <th></th>
+            <th>星期一</th>
+            <th>星期二</th>
+            <th>星期三</th>
+            <th>星期四</th>
+            <th>星期五</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td id="tt">1-2<br />
+				<div class="t1">8:20-9:05</div>
+				<div class="t1">9:15-10:00</div>
+			</td>
+            <td></td>
+            <td>
+                <div class="course1" data-week="3-5,14-18">概率论与数理统计<br>教室：A3402</div>
+                <div class="course2" data-week="11-13">Python数据处理编程<br>教室：9414</div>
+                <div class="course3" data-week="6-8">Web编程与应用<br>教室：9617</div>
+            </td>
+            <td rowspan="2">
+                <div class="course4" data-week="3-18">数据库原理与应用<br>教室：A9217</div>
+            </td>
+            <td>
+                <div class="course5" data-week="2-18">马克思主义基本原理<br>教室：A1405</div>
+            </td>
+            <td rowspan="2">
+                <div class="course2" data-week="3-18">操作系统原理与应用<br>教室：A9213</div>
+            </td>
+        </tr>
+        <tr>
+            <td id="tt">3-4<br />
+				<div class="t1">10:20-11:05</div>
+				<div class="t1">11:15-12:00</div>
+			</td>
+            <td>
+                <div class="course1" data-week="3-18">概率论与数理统计<br>教室：A3213</div>
+            </td>
+            <td>
+                <div class="course2" data-week="11-13">Python数据处理编程<br>教室：A9414</div>
+                <div class="course3" data-week="6-8">Web编程与应用<br>教室：A9617</div>
+            </td>
+            <td>
+                <div class="course2" data-week="11-14">Python数据处理编程<br>教室：A9414</div>
+                <div class="course3" data-week="6-8">Web编程与应用<br>教室：A9617</div>
+            </td>
+        </tr>
+        <tr>
+            <td id="tt">中午</td>
+            <td colspan="5">午休时间/干饭</td>
+        </tr>
+        <tr>
+            <td id="tt">5-6<br />
+				<div class="t1">14:30-15:15</div>
+				<div class="t1">15:25-16:10</div>
+			</td>
+            <td>
+                <div class="course2" data-week="11-14">Python数据处理编程<br>教室：A9414</div>
+                <div class="course3" data-week="6-8">Web编程与应用<br>教室：A9617</div>
+            </td>
+            <td>
+                <div class="course4" data-week="3,5,7,9,11,13,15,17">数据库原理与应用<br>教室：A3310</div>
+            </td>
+            <td rowspan="2">
+                <div class="course2" data-week="11-14">Python数据处理编程<br>教室：A9414</div>
+                <div class="course3" data-week="6-8">Web编程与应用<br>教室：A9617</div>
+            </td>
+            <td></td>
+            <td rowspan="2">
+                <div class="course2" data-week="11-14">Python数据处理编程<br>教室：A9414</div>
+                <div class="course3" data-week="6-8">Web编程与应用<br>教室：A9617</div>
+            </td>
+        </tr>
+        <tr>
+            <td id="tt">7-8<br />
+				<div class="t1">16:30-17:15</div>
+				<div class="t1">17:25-18:10</div>
+			</td>
+            <td>
+                <div class="course2" data-week="11-14">Python数据处理编程<br>教室：A9414</div>
+                <div class="course3" data-week="6-8">Web编程与应用<br>教室：A9617</div>
+            </td>
+            <td>
+                <div class="course6" data-week="10-18">创业基础<br>教室：A3504</div>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td id="tt">晚上</td>
+            <td colspan="5">课外活动/晚餐</td>
+        </tr>
+        <tr>
+            <td id="tt">9-10<br />
+				<div class="t1">19:00-19:45</div>
+				<div class="t1">19:55-20:40</div>
+			</td>
+            <td></td>
+            <td></td>
+            <td>
+                <div class="course3" data-week="7-8">Web编程与应用<br>教室：A9617</div>
+                <div class="course2" data-week="11-14">Python数据处理编程<br>教室：A9414</div>
+            </td>
+            <td>
+                <div class="course2" data-week="11-14">Python数据处理编程<br>教室：A9414</div>
+                <div class="course3" data-week="6-8">Web编程与应用<br>教室：A9617</div>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td id="tt">11-12</td>
+            <td></td>
+            <td>
+                <div class="course5" data-week="2-18">马克思主义基本原理</div>
+            </td>
+            <td>
+                <div class="course2" data-week="13-14">Python数据处理编程<br>教室：A9414</div>
+            </td>
+            <td></td>
+            <td>
+                <div class="course6" data-week="2-9">创业基础</div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<script>
+    function updateSchedule() {
+        const selectedWeek = parseInt(document.getElementById('week').value);
+
+        document.querySelectorAll('div[data-week]').forEach(function (element) {
+            const weekData = element.getAttribute('data-week');
+            const weeks = weekData.split(',').map(weekStr => weekStr.trim());
+            let isVisible = false;
+
+            weeks.forEach(function (weekRange) {
+                if (weekRange.includes('-')) {
+                    const [start, end] = weekRange.split('-').map(Number);
+                    if (selectedWeek >= start && selectedWeek <= end) {
+                        isVisible = true;
+                    }
+                } else {
+                    if (selectedWeek === Number(weekRange)) {
+                        isVisible = true;
+                    }
+                }
+            });
+
+            element.classList.toggle('hidden', !isVisible);
+        });
+    }
+
+    window.onload = function () {
+        updateSchedule();
+    }
+</script>
+
+</body>
+</html>
