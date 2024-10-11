@@ -2,13 +2,13 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2022级数据科学与大数据技术（专升本）4班</title>
     <style>
         td {
             text-align: center;
             font-size: 15px;
-			padding: 1px;
+            padding: 1px;
         }
         th {
             font-size: 20px;
@@ -19,7 +19,7 @@
             font-weight: bold;
         }
         body {
-            background-image: url("https://file.51pptmoban.com/d/file/2022/08/18/6fe3db16faacb7367706e2e9055819da.jpg");			
+            background-image: url("https://file.51pptmoban.com/d/file/2022/08/18/6fe3db16faacb7367706e2e9055819da.jpg");
             background-attachment: fixed;
         }
         #tt {
@@ -37,47 +37,34 @@
         #week {
             font-size: 22px;
         }
+        .course1, .course2, .course3, .course4, .course5, .course6 {
+            padding: 20px;
+            border-radius: 20px;
+            margin: 5px 0;
+        }
         .course1 {
             background-color: rgba(255, 204, 204, 0.8); /* 浅红色 */
-            padding: 20px;
-            border-radius: 20PX;
-            margin: 5px 0;
         }
         .course2 {
             background-color: rgba(204, 255, 204, 0.8); /* 浅绿色 */
-            padding: 20px;
-            border-radius: 20px;
-            margin: 5px 0;
         }
         .course3 {
             background-color: rgba(204, 204, 255, 0.8); /* 浅蓝色 */
-            padding: 20px;
-            border-radius: 20px;
-            margin: 5px 0;
         }
         .course4 {
             background-color: rgba(255, 255, 204, 0.8); /* 浅黄色 */
-            padding: 20px;
-            border-radius: 20px;
-            margin: 5px 0;
         }
-		.course5 {
-		    background-color: rgba(228, 255, 215, 0.8); 
-		    padding: 20px;
-		    border-radius: 20px;
-		    margin: 5px 0;
-		}
-		.course6 {
-		    background-color: rgba(226, 242, 255, 0.8); 
-		    padding: 20px;
-		    border-radius: 20px;
-		    margin: 5px 0;
-		}
-		.t1{
-			margin: 2px;
-			font-size: 18px;
-			font-weight: normal;
-		}
+        .course5 {
+            background-color: rgba(228, 255, 215, 0.8); 
+        }
+        .course6 {
+            background-color: rgba(226, 242, 255, 0.8); 
+        }
+        .t1 {
+            margin: 2px;
+            font-size: 18px;
+            font-weight: normal;
+        }
     </style>
 </head>
 <body>
@@ -223,35 +210,41 @@
 </table>
 
 <script>
+    // 计算当前是第几周
+    function calculateCurrentWeek() {
+        const firstWeekDate = new Date("2024-09-02"); // 第一周的星期一
+        const now = new Date(); // 当前日期
+        const oneDay = 24 * 60 * 60 * 1000; // 一天的毫秒数
+        const diffDays = Math.floor((now - firstWeekDate) / oneDay); // 计算天数差
+        const currentWeek = Math.floor(diffDays / 7) + 1; // 计算周次，+1是因为第1周是从0开始计的
+        return currentWeek;
+    }
+
+    // 根据周次更新课表
     function updateSchedule() {
-        const selectedWeek = parseInt(document.getElementById('week').value);
+        const selectedWeek = parseInt(document.getElementById("week").value);
+        const courses = document.querySelectorAll("[data-week]");
 
-        document.querySelectorAll('div[data-week]').forEach(function (element) {
-            const weekData = element.getAttribute('data-week');
-            const weeks = weekData.split(',').map(weekStr => weekStr.trim());
+        courses.forEach(course => {
+            const weeks = course.getAttribute("data-week").split(",");
             let isVisible = false;
-
-            weeks.forEach(function (weekRange) {
-                if (weekRange.includes('-')) {
-                    const [start, end] = weekRange.split('-').map(Number);
-                    if (selectedWeek >= start && selectedWeek <= end) {
-                        isVisible = true;
-                    }
-                } else {
-                    if (selectedWeek === Number(weekRange)) {
-                        isVisible = true;
-                    }
+            weeks.forEach(weekRange => {
+                const [startWeek, endWeek] = weekRange.split("-").map(Number);
+                if (selectedWeek >= startWeek && selectedWeek <= endWeek) {
+                    isVisible = true;
                 }
             });
-
-            element.classList.toggle('hidden', !isVisible);
+            course.style.display = isVisible ? "" : "none";
         });
     }
 
-    window.onload = function () {
-        updateSchedule();
-    }
+    // 页面加载时自动显示当前周
+    window.onload = function() {
+        const currentWeek = calculateCurrentWeek();
+        const weekSelect = document.getElementById("week");
+        weekSelect.value = currentWeek; // 设置下拉框为当前周
+        updateSchedule(); // 显示当前周的课表
+    };
 </script>
-
 </body>
 </html>
