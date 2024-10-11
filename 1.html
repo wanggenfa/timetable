@@ -101,8 +101,8 @@
             <td></td>
             <td>
                 <div class="course1" data-week="3-5,14-18">概率论与数理统计<br>教室：A3402</div>
-                <div class="course2" data-week="11-13">Python数据处理编程<br>教室：9414</div>
-                <div class="course3" data-week="6-8">Web编程与应用<br>教室：9617</div>
+                <div class="course2" data-week="11-13">Python数据处理编程<br>教室：A9414</div>
+                <div class="course3" data-week="6-8">Web编程与应用<br>教室：A9617</div>
             </td>
             <td rowspan="2">
                 <div class="course4" data-week="3-18">数据库原理与应用<br>教室：A9409</div>
@@ -224,27 +224,35 @@
     function updateSchedule() {
         const selectedWeek = parseInt(document.getElementById("week").value);
         const courses = document.querySelectorAll("[data-week]");
-
+    
         courses.forEach(course => {
             const weeks = course.getAttribute("data-week").split(",");
             let isVisible = false;
             weeks.forEach(weekRange => {
-                const [startWeek, endWeek] = weekRange.split("-").map(Number);
-                if (selectedWeek >= startWeek && selectedWeek <= endWeek) {
-                    isVisible = true;
+                if (weekRange.includes("-")) {
+                    // 处理范围格式，例如 "3-5"
+                    const [startWeek, endWeek] = weekRange.split("-").map(Number);
+                    if (selectedWeek >= startWeek && selectedWeek <= endWeek) {
+                        isVisible = true;
+                    }
+                } else {
+                    // 处理单独的周次，例如 "3", "5", "7"
+                    if (parseInt(weekRange) === selectedWeek) {
+                        isVisible = true;
+                    }
                 }
             });
             course.style.display = isVisible ? "" : "none";
         });
     }
+	// 页面加载时自动显示当前周
+	window.onload = function() {
+	    const currentWeek = calculateCurrentWeek();
+	    const weekSelect = document.getElementById("week");
+	    weekSelect.value = currentWeek; // 设置下拉框为当前周
+	    updateSchedule(); // 显示当前周的课表
+	};
 
-    // 页面加载时自动显示当前周
-    window.onload = function() {
-        const currentWeek = calculateCurrentWeek();
-        const weekSelect = document.getElementById("week");
-        weekSelect.value = currentWeek; // 设置下拉框为当前周
-        updateSchedule(); // 显示当前周的课表
-    };
 </script>
 </body>
 </html>
